@@ -1,2 +1,67 @@
 // Use this file to set SASS variables for @edx/paragon
 // See _variables.scss in https://github.com/openedx/paragon/blob/master/scss/core/ for reference
+
+// 1. Define base colors from your brand palette.
+$primary: #D9241D;
+$secondary: #000927;
+
+// 2. Map your brand colors to Paragon's theme color variables.
+// It's good practice to alias them for consistency.
+$brand: $primary;
+$dark: $secondary;
+
+// It's a good practice to define shades for your primary color.
+// These can be used for hover/active/focus states on components like buttons.
+// You can use SASS functions like `lighten` and `darken` or define them manually.
+$primary-300: lighten($primary, 10%);
+$primary-500: $primary;
+$primary-700: darken($primary, 10%);
+
+// 3. Override the $theme-colors map.
+// This map is used by Paragon/Bootstrap to generate utility classes (e.g., .bg-primary, .text-danger).
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary":   $primary,
+    "secondary": $secondary,
+    "brand":     $brand,
+    "dark":      $dark,
+    // It's good to keep other theme colors for components like alerts.
+    // You can customize them or use Paragon's defaults. Here are some examples:
+    "success":   #0D7D4D,
+    "info":      #00688D,
+    "warning":   #D6B600,
+    "danger":    #AB0D02,
+    "light":     #f8f9fa,
+  ),
+  $theme-colors
+);
+
+// 4. (Optional) Define color levels for more granular control.
+// This is used by some Paragon components and is a good practice for a complete theme.
+$theme-color-levels: () !default;
+$theme-color-levels: map-merge(
+  (
+    "primary-300": $primary-300,
+    "primary-500": $primary-500,
+    "primary-700": $primary-700,
+  ),
+  $theme-color-levels
+);
+
+// 5. (Optional) Override typography, spacing, and other global options.
+// This is an example of the "copy-and-modify" approach from the README.
+// We copy the original variables from Paragon and change their values here.
+
+// Typography
+$font-family-sans-serif: "Playwrite AU QLD", cursive, sans-serif !default; // Use the font from fonts.scss
+$font-size-base: 1rem !default; // Assumes the browser default is 16px
+$h1-font-size: $font-size-base * 2.5 !default; // 40px
+$h2-font-size: $font-size-base * 2 !default;   // 32px
+$h3-font-size: $font-size-base * 1.75 !default;// 28px
+
+// Borders
+// Let's make all components have a more rounded look.
+$border-radius: .5rem !default;
+$border-radius-lg: .6rem !default;
+$border-radius-sm: .4rem !default;
