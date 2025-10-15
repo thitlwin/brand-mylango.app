@@ -6,7 +6,7 @@
 
 .btn {
   // Example: Ensure all buttons use the new font if you've set one.
-  font-family: 'Playwrite AU QLD', cursive;
+  font-family: $font-family-sans-serif;
 
   // Example: Remove default text decoration on hover/focus if desired.
   &:hover,
