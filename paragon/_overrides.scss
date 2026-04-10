@@ -1,12 +1,13 @@
 // Use this file to define style overrides for @edx/paragon
 // This file is included after all Paragon styles, but should generally avoid using private mixins in Paragon.
+@use "./variables" as brand;
 
 // It's a good practice to add component-specific overrides here to ensure
 // they align perfectly with your new theme. Here are some examples for buttons.
 
 .btn {
   // Example: Ensure all buttons use the new font if you've set one.
-  font-family: $font-family-sans-serif;
+  font-family: brand.$font-family-sans-serif;
 
   // Example: Remove default text decoration on hover/focus if desired.
   &:hover,
@@ -20,14 +21,14 @@
   &:not(:disabled):not(.disabled) {
     &:hover,
     &.hover {
-      background-color: $primary-700;
-      border-color: $primary-700;
+      background-color: brand.$primary-700;
+      border-color: brand.$primary-700;
     }
 
     &:focus,
     &.focus {
       // Use a box-shadow for the focus state for better accessibility.
-      box-shadow: 0 0 0 0.2rem rgba($primary, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(brand.$primary, 0.5);
     }
   }
 }

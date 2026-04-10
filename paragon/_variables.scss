@@ -2,13 +2,14 @@
 // See _variables.scss in https://github.com/openedx/paragon/blob/master/scss/core/ for reference
 
 // 1. Define base colors from your brand palette.
-$primary: #D9241D;
-$secondary: #000927;
+$primary: #DA291C;
+$secondary: #0A1128;
 
 // 2. Map your brand colors to Paragon's theme color variables.
 // It's good practice to alias them for consistency.
 $brand: $primary;
 $dark: $secondary;
+$accent: #FDF4F5;
 
 // It's a good practice to define shades for your primary color.
 // These can be used for hover/active/focus states on components like buttons.
@@ -33,6 +34,7 @@ $theme-colors: map-merge(
     "warning":   #D6B600,
     "danger":    #AB0D02,
     "light":     #f8f9fa,
+    "accent":    $accent,
   ),
   $theme-colors
 );

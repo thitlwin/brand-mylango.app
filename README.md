@@ -66,3 +66,18 @@ documentation in Paragon is coming soon. In the meantime, you can start
 a theme by the contents of [\_variables.scss (after line
 7)](https://github.com/openedx/paragon/blob/master/scss/core/_variables.scss#L7-L1046)
 file from the Paragon repository into this file.
+
+## MyLanGo consistency notes
+
+This package is configured to match the current marketing color palette:
+
+- Primary: `#DA291C`
+- Secondary: `#0A1128`
+- Accent: `#FDF4F5`
+
+To keep LMS/CMS/MFEs and marketing pages visually consistent:
+
+1. Keep these values aligned with `openedx-cms/src/app/globals.css`.
+2. Update `paragon/_variables.scss` for Sass-level defaults.
+3. Update `paragon/tokens/src/...` for token-based theme builds.
+4. Rebuild and publish this package, then rebuild MFE images in Tutor.

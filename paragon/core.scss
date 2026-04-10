@@ -1,4 +1,8 @@
-// this file creates the core.css import here all the common styles for your theme. 
+// Core entrypoint for Paragon theme build output.
+// The generated token files are optional in local dev until `npm run build-tokens` runs.
+@use "./build/core/variables";
+@use "./build/core/custom-media-breakpoints";
 
-// @use "./build/core/variables";
-// @use "./build/core/custom-media-breakpoints";
+@use "./fonts";
+@use "./variables" as brand-variables;
+@use "./overrides";

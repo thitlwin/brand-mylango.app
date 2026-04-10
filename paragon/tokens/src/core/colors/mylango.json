@@ -1,0 +1,16 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "primary": {
+        "$value": "#DA291C"
+      },
+      "secondary": {
+        "$value": "#0A1128"
+      },
+      "accent": {
+        "$value": "#FDF4F5"
+      }
+    }
+  }
+}
