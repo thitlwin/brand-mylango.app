@@ -1,64 +1,60 @@
-# Open edX Brand Package Interface
+# MyLanGo Brand Package
 
-This project contains the default branding assets and style used in Open edX
-applications. It is published on npm as `@openedx/brand-openedx`.
+This folder is the custom Open edX brand package used by MyLanGo MFEs.
+It provides logos, favicon, and Paragon theme overrides.
 
-The file structure serves as an interface to be implemented for custom
-branding and theming of Open edX.
+Package name: `@thitlwin/brand-mylango.app`
 
-## How to use this package
+## Quick start
 
-Applications in Open edX are configured by default to include this
-package for branding assets and theming visual style.
+From this folder:
 
-To use a custom brand and theme\...
+```bash
+npm install
+npm run build
+```
 
-1.  Fork or copy this project. Ensure that it lives in a location
-    accessible to Open edX applications during asset builds. This may be
-    a published git repo, npm, or local folder depending on your
-    situation.
-2.  Replace the assets in this project with your own logos or SASS
-    theme. Match the filenames exactly. Open edX applications refer to
-    these files by their filepath. Refer to the brand for edx.org at
-    <https://github.com/edx/brand> for an example.
+If you are editing often:
 
-    If you are working with Design tokens and CSS varibles please follow the guide 
-    [Paragon Design Tokens Compatibility](./docs/how-to/design-tokens-support.rst)
+```bash
+npm run build:watch
+```
 
-3.  Configure your Open edX instance to consume your custom brand
-    package. Refer to this documentation on configuring the platform:
-    https://docs.openedx.org/projects/openedx-proposals/en/latest/architectural-decisions/oep-0048-brand-customization.html
-    \[TODO: Add a link to documentation on configuring in Open edX MFE
-    pipelines when it exists\]
-4.  Rebuild the assets and microfrontends in your Open edX instance to
-    see the new brand reflected. \[TODO: Add link to relevant
-    documentation when it is completed\].
+## What to edit
 
-## Files this package must make available
+### 1) Logos and favicon
 
-`/logo.svg`
+Replace these files (keep names the same):
 
-![logo](/logo.svg)
+- `logo.svg`
+- `logo-trademark.svg`
+- `logo-white.svg`
+- `favicon.ico`
+- `paragon/images/card-imagecap-fallback.png`
 
-`/logo-trademark.svg` A variant of the logo with a trademark ® or ™.
-Note: This file must be present. If you don\'t have a trademark variant
-of your logo, copy your regular logo and use that.
+### 2) Fonts
 
-![logo](/logo-trademark.svg)
+- Import fonts in `paragon/fonts.scss`
+- Set global theme fonts in `paragon/_variables.scss`:
+  - `$font-family-sans-serif` for body text
+  - `$headings-font-family` for headings
+- Add optional utility classes in `paragon/_overrides.scss`
 
-`/logo-white.svg` A variant of the logo for use on dark backgrounds
+Current setup uses:
 
-![logo](/logo-white.svg)
+- `"Shadows Into Light"` as main font
+- `"Shadows Into Light Two"` for headings
 
-`/favicon.ico` A site favicon
+### 3) Colors and component style
 
-![favicon](/favicon.ico)
+- Update base colors and theme map in `paragon/_variables.scss`
+- Add component-level adjustments in `paragon/_overrides.scss`
 
-`/paragon/images/card-imagecap-fallback.png` A variant of the default
-fallback image for [Card.ImageCap] component.
+## Local validation checklist
 
-![card-imagecap-fallback](/paragon/images/card-imagecap-fallback.png)
+Before publishing/deploying:
 
+<<<<<<< Updated upstream
 `/paragon/fonts.scss`, `/paragon/_variables.scss`,
 `/paragon/_overrides.scss` A SASS theme for
 [\@edx/paragon](https://github.com/openedx/paragon). Theming
@@ -81,3 +77,34 @@ To keep LMS/CMS/MFEs and marketing pages visually consistent:
 2. Update `paragon/_variables.scss` for Sass-level defaults.
 3. Update `paragon/tokens/src/...` for token-based theme builds.
 4. Rebuild and publish this package, then rebuild MFE images in Tutor.
+=======
+1. Run `npm run build`
+2. Ensure no SCSS errors
+3. Check that logo files exist with exact required names
+4. Commit and push your changes
+
+## Deploy to Tutor/Open edX
+
+This brand is consumed by Tutor MFE builds (via plugin/config).
+After updating this repo branch/tag:
+
+```bash
+source ~/hso-openedx-venv/bin/activate
+tutor config save
+tutor images build mfe --no-cache
+tutor local dc up -d --no-deps --force-recreate mfe
+```
+
+## Common issue
+
+If MFE build fails with SCSS errors like `Missing argument $border`,
+your brand styles are incompatible with the Paragon version used by MFEs.
+Fix by updating brand SCSS mixin calls to match the current Paragon API,
+or align MFE/brand versions (same release family).
+
+## File reference
+
+- Theme fonts import: `paragon/fonts.scss`
+- Theme variables: `paragon/_variables.scss`
+- Theme overrides: `paragon/_overrides.scss`
+>>>>>>> Stashed changes
